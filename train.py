@@ -54,7 +54,7 @@ model = M.Transformer().to(device)
 opt = torch.optim.AdamW(model.parameters(), lr=5e-4, betas=(0.9, 0.98), weight_decay=0.01)
 
 
-epochs = 3
+epochs = 10
 start_epoch, step = 0, 0
 last_path = f"{CKPT_DIR}/last.pt"
 best_val = float("inf")

@@ -6,10 +6,11 @@ eos_id=3
 
 def generate(model, src_ids, max_steps=100):
     model.eval()
+    device = next(model.parameters()).device
     with torch.no_grad():
-        src = torch.tensor([src_ids])
+        src = torch.tensor([src_ids], device=device)
         enc_out, src_pad_mask = model.encoder(src)
-        ys = torch.tensor([[bos_id]])
+        ys = torch.tensor([[bos_id]], device=device)
         for _ in range(max_steps):
             logits = model.decoder(ys, enc_out, src_pad_mask)
             next_id = logits[:, -1].argmax(dim=-1, keepdim=True)

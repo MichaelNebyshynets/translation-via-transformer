@@ -67,7 +67,6 @@ if os.path.exists(last_path):
 
 ds = load_from_disk("data/tokenized")
 train_ds = TranslationDataset(ds["train"])
-train_ds = torch.utils.data.Subset(train_ds, range(6400)) 
 val_ds = TranslationDataset(ds["validation"])
 train_loader = DataLoader(train_ds, batch_size=128, shuffle=True, collate_fn=collate_fn)
 val_loader = DataLoader(val_ds, batch_size=128, shuffle=False, collate_fn=collate_fn)
